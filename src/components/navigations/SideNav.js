@@ -1,94 +1,96 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const SideNav = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex">
-      {/* Sidebar */}
-      <div
-        className={`fixed inset-y-0 left-0 w-64 p-4 flex flex-col justify-between transform transition-transform overflow-y-auto h-full md:translate-x-0 ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
-        style={{ backgroundColor: "#1E293B", color: "white" }}
-      >
-        <div>
-          {/* Close Button for Mobile */}
-          <button className="absolute top-3 right-3 text-white md:hidden" onClick={() => setIsOpen(false)}>
-            <X size={22} />
-          </button>
-          <h2 className="text-xl font-bold">Brand</h2>
-
-          {/* Primary Colors */}
-          <h4 className="text-sm mt-4 mb-2 text-left">PRIMARY COLORS</h4>
-          <nav className="space-y-1">
-            <div className="p-2 rounded bg-[#007BFF]">Blue</div>
-            <div className="p-2 rounded bg-[#DC3545]">Red</div>
-            <div className="p-2 rounded bg-[#28A745]">Green</div>
-            <div className="p-2 rounded bg-[#6F42C1]">Purple</div>
-            <div className="p-2 rounded bg-[#FD7E14]">Orange</div>
-          </nav>
-
-          {/* Secondary Colors */}
-          <h4 className="text-sm mt-4 mb-2 text-left">SECONDARY COLORS</h4>
-          <nav className="space-y-1">
-            {/* <div className="p-2 rounded bg-[#20C997]">Teal</div> */}
-            <div className="p-2 rounded bg-[#6610F2]">Indigo</div>
-            <div className="p-2 rounded bg-[#E83E8C]">Pink</div>
-            <div className="p-2 rounded bg-[#17A2B8]">Cyan</div>
-          </nav>
-
-          {/* Tertiary Colors */}
-          <h4 className="text-sm mt-4 mb-2 text-left">TERTIARY COLORS</h4>
-          <nav className="space-y-1">
-            <div className="p-2 rounded bg-[#E34234]">Vermilion </div>
-            <div className="p-2 rounded bg-[#FFBF00]">Amber </div>
-            <div className="p-2 rounded bg-[#7FFF00]">Chartreuse</div>
-
-            <div className="p-2 rounded bg-[#008080]">Teal</div>
-            <div className="p-2 rounded bg-[#8F00FF]">Violet</div>
-            <div className="p-2 rounded bg-[#FF00FF]">Magenta</div>
-          </nav>
-
-          {/* Accent Colors */}
-          <h4 className="text-sm mt-4 mb-2 text-left">ACCENT COLORS</h4>
-          <nav className="space-y-1">
-            <div className="p-2 rounded bg-green-400">Neon Green</div>
-            <div className="p-2 rounded bg-yellow-400">Bright Yellow</div>
-            <div className="p-2 rounded bg-pink-400">Hot Pink</div>
-            <div className="p-2 rounded bg-blue-400">Electric Blue</div>
-          </nav>
-
-          {/* Text Colors */}
-          <h4 className="text-sm mt-4 mb-2 text-left">TEXT COLORS</h4>
-          <nav className="space-y-1">
-            <div className="p-2 rounded bg-black text-white">Primary Text (Black)</div>
-            <div className="p-2 rounded bg-[#ffffff] text-black border">Primary Text (White)</div>
-            <div className="p-2 rounded bg-gray-500">Secondary Text (Gray)</div>
-            <div className="p-2 rounded bg-gray-300">Disabled Text (Light Gray)</div>
-          </nav>
-
-          {/* Success, Warning, Error, and Info Colors */}
-          <h4 className="text-sm mt-4 mb-2 text-left">STATUS COLORS</h4>
-          <nav className="space-y-1">
-            <div className="p-2 rounded bg-green-500">Success (Green)</div>
-            <div className="p-2 rounded bg-yellow-500">Warning (Yellow/Orange)</div>
-            <div className="p-2 rounded bg-red-500">Error (Red)</div>
-            <div className="p-2 rounded bg-blue-500">Info (Blue)</div>
-          </nav>
-        </div>
-      </div>
-
+    <>
       {/* Mobile Menu Button */}
-      <button className="p-2 md:hidden" onClick={() => setIsOpen(!isOpen)}>
+      <button className="p-2 md:hidden fixed top-4 left-4 z-50" onClick={() => setIsOpen(!isOpen)}>
         <Menu size={22} />
       </button>
 
-      {/* Main Content */}
-      <div className="flex-1 p-4 md:ml-64">
-        <h1 className="text-xl font-bold">Dashboard</h1>
-        <p className="text-gray-600">Welcome to your dashboard.</p>
+      {/* Sidebar */}
+      <div
+        className={`fixed inset-y-0 left-0 w-64 p-4 flex flex-col justify-between transform transition-transform overflow-y-auto h-full md:translate-x-0 z-40 bg-gray-900 text-white ${
+          isOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        {/* Close Button for Mobile */}
+        <button className="absolute top-3 right-3 text-white md:hidden" onClick={() => setIsOpen(false)}>
+          <X size={22} />
+        </button>
+
+        {/* Brand Name */}
+        <Link to="/" className="text-xl font-bold block mb-4">
+          Brand
+        </Link>
+
+        {/* Primary Colors */}
+        <h4 className="text-sm mt-4 mb-2 text-left">PRIMARY COLORS</h4>
+        <nav className="space-y-1">
+          <Link to="/red" className="block p-2 rounded bg-[#DC3545]">Red</Link>
+          <Link to="/green" className="block p-2 rounded bg-[#28A745]">Green</Link>
+          <Link to="/blue" className="block p-2 rounded bg-[#007BFF]">Blue</Link>
+        </nav>
+
+        {/* Secondary Colors */}
+        <h4 className="text-sm mt-4 mb-2 text-left">SECONDARY COLORS</h4>
+        <nav className="space-y-1">
+          <Link to="/indigo" className="block p-2 rounded bg-[#6610F2]">Indigo</Link>
+          <Link to="/pink" className="block p-2 rounded bg-[#E83E8C]">Pink</Link>
+          <Link to="/cyan" className="block p-2 rounded bg-[#17A2B8]">Cyan</Link>
+          <Link to="/gold" className="block p-2 rounded bg-[#FFC107]">Gold</Link>
+          <Link to="/brown" className="block p-2 rounded bg-[#A52A2A]">Brown</Link>
+        </nav>
+
+        {/* Tertiary Colors */}
+        <h4 className="text-sm mt-4 mb-2 text-left">TERTIARY COLORS</h4>
+        <nav className="space-y-1">
+        <Link to="/vermilion" className="block p-2 rounded bg-[#E34234]">Vermilion</Link>
+        <Link to="/amber" className="block p-2 rounded bg-[#FFBF00]">Amber</Link>
+        <Link to="/chartreuse" className="block p-2 rounded bg-[#7FFF00]">Chartreuse</Link>
+        <Link to="/teal" className="block p-2 rounded bg-[#008080]">Teal</Link>
+        <Link to="/violet" className="block p-2 rounded bg-[#8F00FF]">Violet</Link>
+        <Link to="/magenta" className="block p-2 rounded bg-[#FF00FF]">Magenta</Link>
+        <Link to="/lime" className="block p-2 rounded bg-[#DFFF00]">Lime</Link>
+        <Link to="/turquoise" className="block p-2 rounded bg-[#40E0D0]">Turquoise</Link>
+        </nav>
+
+        {/* Accent Colors */}
+        <h4 className="text-sm mt-4 mb-2 text-left">ACCENT COLORS</h4>
+        <nav className="space-y-1">
+          <div className="p-2 rounded bg-green-400">Neon Green</div>
+          <div className="p-2 rounded bg-yellow-400">Bright Yellow</div>
+          <div className="p-2 rounded bg-pink-400">Hot Pink</div>
+          <div className="p-2 rounded bg-blue-400">Electric Blue</div>
+          <div className="p-2 rounded bg-[#F4A460]">Sandy Brown</div>
+          <div className="p-2 rounded bg-[#B22222]">Firebrick</div>
+        </nav>
+
+        {/* Text Colors */}
+        <h4 className="text-sm mt-4 mb-2 text-left">TEXT COLORS</h4>
+        <nav className="space-y-1">
+          <div className="p-2 rounded bg-black text-white">Primary Text (Black)</div>
+          <div className="p-2 rounded bg-[#ffffff] text-black border">Primary Text (White)</div>
+          <div className="p-2 rounded bg-gray-500">Secondary Text (Gray)</div>
+          <div className="p-2 rounded bg-gray-300">Disabled Text (Light Gray)</div>
+          <div className="p-2 rounded bg-[#2F4F4F] text-white">Dark Slate Gray</div>
+        </nav>
+
+        {/* Status Colors */}
+        <h4 className="text-sm mt-4 mb-2 text-left">STATUS COLORS</h4>
+        <nav className="space-y-1">
+          <div className="p-2 rounded bg-green-500">Success (Green)</div>
+          <div className="p-2 rounded bg-yellow-500">Warning (Yellow/Orange)</div>
+          <div className="p-2 rounded bg-red-500">Error (Red)</div>
+          <div className="p-2 rounded bg-blue-500">Info (Blue)</div>
+          <div className="p-2 rounded bg-[#8B0000]">Danger (Dark Red)</div>
+        </nav>
       </div>
-    </div>
+    </>
   );
 };
 

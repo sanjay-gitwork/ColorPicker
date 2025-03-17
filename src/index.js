@@ -5,10 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 // Load Tailwind CSS from CDN
-const link = document.createElement("link");
-link.href = "https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css";
-link.rel = "stylesheet";
-document.head.appendChild(link);
+// const link = document.createElement("link");
+// link.href = "https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css";
+// link.rel = "stylesheet";
+// document.head.appendChild(link);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
