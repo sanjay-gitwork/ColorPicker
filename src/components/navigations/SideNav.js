@@ -23,9 +23,11 @@ const SideNav = () => {
           <X size={22} />
         </button>
 
+
+
         {/* Brand Name */}
-        <Link to="/" className="text-xl font-bold block mb-4">
-          Brand
+        <Link to="/" className="text-center text-2xl font-extrabold tracking-wide mb-4">
+          ColorShades
         </Link>
 
         {/* Primary Colors */}
@@ -39,25 +41,45 @@ const SideNav = () => {
         {/* Secondary Colors */}
         <h4 className="text-sm mt-4 mb-2 text-left">SECONDARY COLORS</h4>
         <nav className="space-y-1">
-          <Link to="/indigo" className="block p-2 rounded bg-[#6610F2]">Indigo</Link>
-          <Link to="/pink" className="block p-2 rounded bg-[#E83E8C]">Pink</Link>
-          <Link to="/cyan" className="block p-2 rounded bg-[#17A2B8]">Cyan</Link>
-          <Link to="/gold" className="block p-2 rounded bg-[#FFC107]">Gold</Link>
-          <Link to="/brown" className="block p-2 rounded bg-[#A52A2A]">Brown</Link>
+          {/* <Link to="/indigo" className="block p-2 rounded bg-[#6610F2]">Indigo</Link>
+          <Link to="/pink" className="block p-2 rounded bg-[#E83E8C]">Pink</Link> */}
+          <Link to="/cyan" className="block p-2 rounded bg-[#00FFFF]">Cyan</Link>
+          <Link to="/magenta" className="block p-2 rounded bg-[#FF00FF]">Magenta</Link>
+          <Link to="/Yellow" className="block p-2 rounded bg-[#FFFF00]">Yellow</Link>
+
+          {/* <Link to="/gold" className="block p-2 rounded bg-[#FFC107]">Gold</Link>
+          <Link to="/brown" className="block p-2 rounded bg-[#A52A2A]">Brown</Link> */}
         </nav>
 
         {/* Tertiary Colors */}
         <h4 className="text-sm mt-4 mb-2 text-left">TERTIARY COLORS</h4>
         <nav className="space-y-1">
-        <Link to="/vermilion" className="block p-2 rounded bg-[#E34234]">Vermilion</Link>
-        <Link to="/amber" className="block p-2 rounded bg-[#FFBF00]">Amber</Link>
-        <Link to="/chartreuse" className="block p-2 rounded bg-[#7FFF00]">Chartreuse</Link>
-        <Link to="/teal" className="block p-2 rounded bg-[#008080]">Teal</Link>
-        <Link to="/violet" className="block p-2 rounded bg-[#8F00FF]">Violet</Link>
-        <Link to="/magenta" className="block p-2 rounded bg-[#FF00FF]">Magenta</Link>
-        <Link to="/lime" className="block p-2 rounded bg-[#DFFF00]">Lime</Link>
-        <Link to="/turquoise" className="block p-2 rounded bg-[#40E0D0]">Turquoise</Link>
+
+          <Link to="/azure" className="block p-2 rounded bg-[#007FFF]">Azure</Link>
+          <Link to="/orange" className="block p-2 rounded bg-[#FF7F00]">Orange</Link>
+          <Link to="/spring" className="block p-2 rounded bg-[#00FF7F]">Spring</Link>
+          <Link to="/violet" className="block p-2 rounded bg-[#7F00FF]">Violet</Link>
+          <Link to="/rose" className="block p-2 rounded bg-[#FF007F]">Rose</Link>
+          <Link to="/chartreuse" className="block p-2 rounded bg-[#7FFF00]">Chartreuse</Link>
+   
         </nav>
+
+
+        {/* Quaternary Colors */}
+        <h4 className="text-sm mt-4 mb-2 text-left">QUATERNARY COLORS</h4>
+        <nav className="space-y-1">
+
+          <Link to="/amber" className="block p-2 rounded bg-[#FFBF00]">Amber</Link>
+          <Link to="/cobalt" className="block p-2 rounded bg-[#003FFF]">Cobalt</Link>
+          <Link to="/lime" className="block p-2 rounded bg-[#BFFF00]">Lime</Link>
+          <Link to="/turquoise" className="block p-2 rounded bg-[#00BFBF]">Turquoise</Link>
+          <Link to="/vermilion" className="block p-2 rounded bg-[#FF3F00]">Vermilion</Link>
+          <Link to="/fuchsia" className="block p-2 rounded bg-[#FF00BF]">Fuchsia</Link>
+        
+        </nav>
+
+
+
 
         {/* Accent Colors */}
         <h4 className="text-sm mt-4 mb-2 text-left">ACCENT COLORS</h4>

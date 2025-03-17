@@ -1,29 +1,25 @@
 import React, { useState, useMemo, useEffect } from "react";
 
-// Function to generate exactly 250 usable shades of blue
-const generateShades = () => {
-  const totalShades = 250; 
-  const hue = 240; // Hue for blue
-  const saturation = 100; // Full saturation
-  const minLightness = 10; // Avoid extreme dark
-  const maxLightness = 90; // Avoid extreme light
-  const step = (maxLightness - minLightness) / totalShades; // Calculate step size
-
-  const shades = [];
-
-  for (let i = 0; i < totalShades; i++) {
-    const lightness = parseFloat((minLightness + i * step).toFixed(2));
-    const hsl = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-    const rgb = hslToRgb(hue, saturation, lightness);
-    const hex = rgbToHex(rgb[0], rgb[1], rgb[2]);
-
-    shades.push({ hsl, rgb: `rgb(${rgb.join(", ")})`, hex, lightness });
+// Function to generate unique shades of Amber
+const generateShades = (steps) => {
+  const shades = new Map();
+  for (let i = 0; i < steps; i++) {
+    const hue = 45; // Amber hue
+    const saturation = 100; // Full saturation for vibrant colors
+    const lightness = parseFloat(((i / steps) * 100).toFixed(2)); // Calculate lightness step by step
+    
+    if (lightness <= 10 || lightness >= 90) continue; // Skip very dark or very light shades
+    
+    const hsl = `hsl(${hue}, ${saturation}%, ${lightness}%)`; // Generate HSL color string
+    const rgb = hslToRgb(hue, saturation, lightness); // Convert HSL to RGB
+    const hex = rgbToHex(rgb[0], rgb[1], rgb[2]); // Convert RGB to HEX
+    
+    shades.set(hex, { hsl, rgb: `rgb(${rgb.join(", ")})`, hex, lightness }); // Store the color values
   }
-  
-  return shades;
+  return Array.from(shades.values()).slice(0, 250); // Limit to 250 unique shades
 };
 
-// Convert HSL to RGB
+// Function to convert HSL to RGB
 const hslToRgb = (h, s, l) => {
   s /= 100;
   l /= 100;
@@ -33,20 +29,21 @@ const hslToRgb = (h, s, l) => {
   return [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
 };
 
-// Convert RGB to HEX
+// Function to convert RGB to HEX
 const rgbToHex = (r, g, b) => {
   return `#${((1 << 24) | (r << 16) | (g << 8) | b).toString(16).slice(1).toUpperCase()}`;
 };
 
-const BlueShades = () => {
-  const [copiedHex, setCopiedHex] = useState("");
-  const shades = useMemo(() => generateShades(), []); // Generate shades once
+const AmberShades = () => {
+  const [copiedHex, setCopiedHex] = useState(""); // State to store copied hex value
+  const shades = useMemo(() => generateShades(300), []); // Memoized function to generate shades
 
-  // Copy to clipboard
+  // Function to copy hex code to clipboard
   const copyToClipboard = (hex) => {
     navigator.clipboard.writeText(hex).then(() => setCopiedHex(hex));
   };
 
+  // Effect to reset copied hex after a timeout
   useEffect(() => {
     if (copiedHex) {
       const timer = setTimeout(() => setCopiedHex(""), 1500);
@@ -56,9 +53,8 @@ const BlueShades = () => {
 
   return (
     <div className="p-5 mt-10 relative">
-      <h1 className="text-2xl font-bold text-center mb-1">250 Unique Shades of Blue</h1>
+      <h1 className="text-2xl font-bold text-center mb-1">Unique Shades of Amber</h1>
       <h2 className="text-lg text-center mb-2">Total Colors Generated: {shades.length}</h2>
-
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-1">
         {shades.map((shade, index) => (
           <div
@@ -77,7 +73,6 @@ const BlueShades = () => {
           </div>
         ))}
       </div>
-
       {copiedHex && (
         <div className="fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-black text-white px-4 py-2 rounded shadow-lg text-sm transition-opacity duration-300 opacity-100">
           Copied {copiedHex} to clipboard!
@@ -87,4 +82,4 @@ const BlueShades = () => {
   );
 };
 
-export default BlueShades;
+export default AmberShades;

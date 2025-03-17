@@ -1,19 +1,22 @@
 import React, { useState, useMemo, useEffect } from "react";
 
-// Function to generate shades of green
+// Function to generate unique shades of green
 const generateShades = (steps) => {
   const shades = new Map();
   for (let i = 0; i < steps; i++) {
-    const hue = 120;
+    const hue = 120; // Green hue
     const saturation = 100;
     const lightness = parseFloat(((i / steps) * 100).toFixed(2));
-    if (lightness <= 8 || lightness >= 92) continue;
+    
+    if (lightness <= 10 || lightness >= 90) continue;
+    
     const hsl = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
     const rgb = hslToRgb(hue, saturation, lightness);
     const hex = rgbToHex(rgb[0], rgb[1], rgb[2]);
+    
     shades.set(hex, { hsl, rgb: `rgb(${rgb.join(", ")})`, hex, lightness });
   }
-  return Array.from(shades.values());
+  return Array.from(shades.values()).slice(0, 250);
 };
 
 const hslToRgb = (h, s, l) => {
@@ -31,7 +34,7 @@ const rgbToHex = (r, g, b) => {
 
 const GreenShades = () => {
   const [copiedHex, setCopiedHex] = useState("");
-  const shades = useMemo(() => generateShades(500), []);
+  const shades = useMemo(() => generateShades(300), []);
 
   const copyToClipboard = (hex) => {
     navigator.clipboard.writeText(hex).then(() => setCopiedHex(hex));
@@ -45,8 +48,8 @@ const GreenShades = () => {
   }, [copiedHex]);
 
   return (
-    <div className="p-5 relative">
-      <h1 className="text-2xl font-bold text-center mb-4">Unique Shades of Green</h1>
+    <div className="p-5 mt-10 relative">
+      <h1 className="text-2xl font-bold text-center mb-1">Unique Shades of Green</h1>
       <h2 className="text-lg text-center mb-2">Total Colors Generated: {shades.length}</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-1">
         {shades.map((shade, index) => (
